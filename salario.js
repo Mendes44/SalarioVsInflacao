@@ -14,7 +14,7 @@ let salarios_minimos = [
   { ano: 2020, valor: 1045.0 },
 ];
 
-let ipca = [
+let ipca_array = [
   { ano: 2010, valor: 5.91 },
   { ano: 2011, valor: 6.5 },
   { ano: 2012, valor: 5.84 },
@@ -59,7 +59,19 @@ do {
       break;
 
     case 2:
-      console.log("\n>>> Índice IPCA de 2010 a 2020: <<<");
+      console.log("\n>>> Índice IPCA de 2010 a 2020: <<<\n");
+
+      for(let ipca of ipca_array){
+
+        let ano_ipca = ipca.ano;
+        let inflacao = ipca.valor;
+
+        console.log("Ano: " .padEnd(30, ".") + ano_ipca);
+        console.log("Inflacao IPCA: " .padEnd(30, ".") + inflacao.toFixed(2).replace(".", ",") + "%");
+        console.log();
+
+      }
+
       break;
 
     case 3:
