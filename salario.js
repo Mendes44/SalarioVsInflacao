@@ -75,9 +75,24 @@ do {
       break;
 
     case 3:
-      console.log(
-        "\n>>> Comparação entre o percentual de aumento salarial e o IPCA: <<<",
-      );
+      console.log("\n>>> Comparação entre o percentual de aumento salarial e o IPCA: <<<");
+
+      for (let i=1; i < salarios_minimos.length; i++){
+        let salario_atual = salarios_minimos[i].valor;
+        let salario_anterior = salarios_minimos[i - 1].valor;
+        let ano = salarios_minimos[i].ano;
+        let ipca = ipca_array[i].valor;
+
+        let diferenca = salario_atual - salario_anterior;
+        let crescimento_salarial = (diferenca / salario_anterior) * 100;
+
+        console.log("Ano: " .padEnd(30, ".") + ano);
+        console.log("Salario Minimo: ".padEnd(30, ".") + "R$ " + salario_atual.toFixed(2).replace(".",","));
+        console.log("Crescimento Salarial: " .padEnd(30, ".") + crescimento_salarial.toFixed(2).replace(".",","));
+        console.log("Inflação IPCA: ".padEnd(30, ".") + ipca.toFixed(2).replace(".",",") + "%");
+        console.log();
+
+      }
       break;
 
     case 4:
