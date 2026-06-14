@@ -53,7 +53,7 @@ do {
             "R$ " +
             salario_minimo.toFixed(2).replace(".", ","),
         );
-        console.log();
+        console.log("\n".padEnd(50, "-") + "\n");
       }
 
       break;
@@ -68,7 +68,7 @@ do {
 
         console.log("Ano: " .padEnd(30, ".") + ano_ipca);
         console.log("Inflacao IPCA: " .padEnd(30, ".") + inflacao.toFixed(2).replace(".", ",") + "%");
-        console.log();
+        console.log("\n".padEnd(50, "-") + "\n");
 
       }
 
@@ -77,30 +77,39 @@ do {
     case 3:
       console.log("\n>>> Comparação entre o percentual de aumento salarial e o IPCA: <<<");
 
-      for (let i=1; i < salarios_minimos.length; i++){
-        let salario_atual = salarios_minimos[i].valor;
-        let salario_anterior = salarios_minimos[i - 1].valor;
+      for (let i=0; i <= salarios_minimos.length - 1; i++){
         let ano = salarios_minimos[i].ano;
+        let salario = salarios_minimos[i].valor;
         let ipca = ipca_array[i].valor;
+        let percentualCrescimento;
+        let crescimentoFormatado;
 
-        let diferenca = salario_atual - salario_anterior;
-        let crescimento_salarial = (diferenca / salario_anterior) * 100;
+        if (i > 0){
+            let salario_anterior = salarios_minimos[i-1].valor;
+            let diferenca = salario - salario_anterior;
+
+            percentualCrescimento = (diferenca / salario_anterior) * 100;
+            crescimentoFormatado = percentualCrescimento.toFixed(2).replace(".",",") + "%";
+        }else {
+            crescimentoFormatado = " - "
+        }
+        
 
         console.log("Ano: " .padEnd(30, ".") + ano);
-        console.log("Salario Minimo: ".padEnd(30, ".") + "R$ " + salario_atual.toFixed(2).replace(".",","));
-        console.log("Crescimento Salarial: " .padEnd(30, ".") + crescimento_salarial.toFixed(2).replace(".",","));
+        console.log("Salario Minimo: ".padEnd(30, ".") + "R$ " + salario.toFixed(2).replace(".",","));
+        console.log("Crescimento Salarial: " .padEnd(30, ".") + crescimentoFormatado);
         console.log("Inflação IPCA: ".padEnd(30, ".") + ipca.toFixed(2).replace(".",",") + "%");
-        console.log();
+        console.log("\n".padEnd(50, "-") + "\n");
 
       }
       break;
 
     case 4:
-      console.log("\nSaindo...");
+      console.log("\n::: PROGRAMA ENCERRADO :::");
       break;
 
     default:
-      console.log("\nOpção inválida! Escolha uma alternativa entre 1 e 4.\n");
+      console.log("\n>>> Opção inválida! Escolha uma alternativa entre 1 e 4. <<< \n");
       break;
   }
 } while (escolha != 4);
